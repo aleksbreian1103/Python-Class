@@ -1,3 +1,5 @@
+import dictionary
+
 newset = set()
 newdict = {}
 setlen = 0

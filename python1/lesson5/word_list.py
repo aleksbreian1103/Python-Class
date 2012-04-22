@@ -1,4 +1,4 @@
-str_in = input("Enter a string: ")
+str_in = raw_input("Enter a string: ")
 lines = str_in.strip().split("\n")
 
 upper = []
