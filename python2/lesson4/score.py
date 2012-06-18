@@ -7,11 +7,17 @@ import shelve
     
 def high_score(player, score):
 
-    shelf = shelve.open('v:\workspace\Python2_Homework04\src\myshelf.shlf')
+    shelf = shelve.open('myshelf.shlf')
 
-    if not shelf.__contains__(player):
+    if player not in shelf:
         shelf[player] = score
+        highscore = score
     elif shelf[player] < score:
         shelf[player] = score
+        highscore = score
+    else:
+        highscore = shelf[player]
         
     shelf.close()
+
+    return highscore

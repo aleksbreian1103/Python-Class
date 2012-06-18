@@ -1,32 +1,23 @@
 import unittest
 import score
 import os
-import shelve
+import glob
 
 class TestScore(unittest.TestCase):
     
-    def setUp(self):
-        shelf = shelve.open('v:\workspace\Python2_Homework04\src\myshelf.shlf')
-        shelf.close()
-    
     def test_score(self):    
-        score.high_score("Albert", 5)
-        score.high_score("Bruce", 10)
-        score.high_score("Charlie", 15)
-        score.high_score("David", 20)
+        self.assertEqual(5, score.high_score("Albert", 5))
+        self.assertEqual(10, score.high_score("Bruce", 10))
+        self.assertEqual(15, score.high_score("Charlie", 15))
+        self.assertEqual(20, score.high_score("David", 20))
         
-        score.high_score("Albert", 20)
-        score.high_score("Bruce", 5)
-
-        shelf = shelve.open('v:\workspace\python2_Homework04\src\myshelf.shlf')
-        expected = {'Albert':20, 'Bruce':10, 'Charlie':15, 'David':20}
-        self.assertEqual(shelf, expected)
-        shelf.close()
+        self.assertEqual(20, score.high_score("Albert", 20))
+        self.assertEqual(10, score.high_score("Bruce", 5))
 
     def tearDown(self):
-        os.remove('v:\workspace\python2_Homework04\src\myshelf.shlf.bak')
-        os.remove('v:\workspace\python2_Homework04\src\myshelf.shlf.dat')
-        os.remove('v:\workspace\python2_Homework04\src\myshelf.shlf.dir')
+        files = glob.glob('myshelf.shlf.*')
+        for file in files:
+            os.remove(file)
     
 if __name__ == "__main__":
     unittest.main()
