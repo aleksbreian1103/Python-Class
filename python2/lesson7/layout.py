@@ -12,7 +12,7 @@ class Application(Frame):
         for r in range(6):
             self.rowconfigure(r, weight=1)
             Button(self, text="Row {0}".format(r)).grid(row=r, column=0, sticky=ALL)
-        self.rowconfigure(6, weight=1)
+        self.rowconfigure(6, weight=0)
         for c in range(5):
             self.columnconfigure(c, weight=1)
             Button(self, text="Button {0}".format(c+1)).grid(row=6, column=c, sticky=E+W)
